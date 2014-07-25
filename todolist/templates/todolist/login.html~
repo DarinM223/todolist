@@ -1,0 +1,8 @@
+{% extends 'todolist/layout.html' %}
+
+{% block body %}
+<div class="jumbotron">
+    <p>This is a simple todo list web application that manages your todo lists, flash cards, cheatsheets, and other fun stuff</p>
+    <p><a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalLogin" id="loginButton">Log in</a> <a href="{% url 'signup' %}" class="btn btn-primary btn-lg" id="signupButton">Sign up</a></p>
+</div>
+{% endblock %}

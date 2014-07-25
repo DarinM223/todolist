@@ -1,0 +1,47 @@
+{% extends 'todolist/layout.html' %}
+
+{% block body %}
+<div class="jumbotron">
+  <p>This is a simple todo list web application that manages your todo lists, flash cards, cheatsheets, and other fun stuff</p>
+  <p>
+     <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" 
+         data-target="#modalLogin" id="loginButton">Log in</a> 
+     <a href="{% url 'signup' %}" class="btn btn-primary btn-lg" 
+         id="signupButton">Sign up</a>
+   </p>
+</div>
+
+<!-- Modal dialog to log in -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" 
+    aria-labelledby="basicModal" aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+            data-dismiss="modal" aria-hidden="true">x</button>
+        
+        <h4 class="modal-title" id="myModalLabel">
+            Please enter username and password:</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" 
+              placeholder="username" id="loginUsername"/>
+
+          <br>
+          <input type="password" class="form-control" 
+              placeholder="password" id="loginPassword"/>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" 
+            data-dismiss="modal" aria-hidden="true" 
+            id="loginButton">Log in</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
