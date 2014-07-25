@@ -2,42 +2,37 @@
 
 {% block body %}
 <div class="jumbotron">
-  <form class="form-horizontal" action="{% url 'adduser' %}" method="post">
+  <form class="form-horizontal" action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
     <fieldset>
       <legend>Please fill out the following fields to sign up:</legend>
       <div class="form-group">
-        <label for="inputUsername" 
+        {{ form.username.errors }}
+        <label for="id_username" 
             class="col-lg-2 control-label">Username</label>
-
         <div class="col-lg-10">
-          <input type="text" class="form-control" 
-              id="inputUsername" placeholder="Username">
-
+          {{ form.username }}
         </div>
       </div>
       <div class="form-group">
-        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+        {{ form.email.errors }}
+        <label for="id_email" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-10">
-          <input type="text" class="form-control" 
-              id="inputEmail" placeholder="Email">
-
+          {{ form.email }}
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPassword" 
+        {{ form.password.errors }}
+        <label for="id_password" 
             class="col-lg-2 control-label">Password</label>
         
         <div class="col-lg-10">
-          <input type="password" class="form-control" 
-              id="inputPassword" placeholder="Password">
-
+          {{ form.password }}
         </div>
       </div>
       <div class="form-group">
         <div class="col-lg-10 col-lg-offset-2">
-          <button type="submit" class="btn btn-primary" 
-              id="submitButton">Submit</button>
-          
+          <input type="submit" class="btn btn-primary" value="Submit">
         </div>
       </div>
     </fieldset>
