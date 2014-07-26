@@ -1,0 +1,17 @@
+{% extends 'todolist/layout.html' %}
+
+{% block body %}
+{{ object }}
+{{ object.email }}
+{% for list in object.todolist_set.all %}
+  <p>{{ list.name }}</p>
+  {% for listField in list.todofield_set.all %}
+  <div>
+    <p>List text: {{ listField.text }}</p>
+    <p>Date created: {{ listField.dateCreated }}</p>
+    <p>Deadline: {{ listField.deadline }}</p>
+    </br>
+  </div>
+  {% endfor %}
+{% endfor %}
+{% endblock %}
