@@ -1,5 +1,5 @@
 from django.contrib import admin
-from todolist.models import User, TodoList, TodoField
+from todolist.models import TodoList, TodoField
 
 class TodoFieldInline(admin.TabularInline):
     model = TodoField
@@ -10,4 +10,4 @@ class TodoListAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(TodoList, TodoListAdmin)
-admin.site.register(User)
+# admin.site.register(User)
