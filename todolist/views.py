@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, FormView
@@ -9,6 +9,10 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib import auth
+
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
@@ -21,23 +25,36 @@ def index(request):
 
 def logout(request):
     if request.user.is_authenticated():
-        auth.logout(request)
+        auth_logout(request)
         return HttpResponseRedirect(reverse('index'))
     else:
-        return HttpResponse('You have to login before you can log out!')
+        return HttpResponseRedirect(reverse('index'))
 
-class UserCreateView(CreateView):
-    form_class = forms.UserCreateForm
-    model = User
-    template_name = 'todolist/signup.html'
-    # redirects to user detail page
-    def get_success_url(self):
-        return reverse('user', args=(self.object.username,))
+def login(request):
+    if request.method == 'POST':
+        authform = AuthenticationForm(data=request.POST)
 
-class UserDetailView(DetailView):
-    # model = models.User
-    model = User
-    template_name = 'todolist/user_detail.html'
-    # gets object from username parameter in url string
-    def get_object(self):
-        return self.get_queryset().get(username=self.kwargs.get("username"))
+        if authform.is_valid():
+            auth_login(request, authform.get_user())
+            return HttpResponseRedirect(reverse('user', args=(authform.get_user().username,)))
+    else: 
+        authform = AuthenticationForm()
+    return render(request, 'todolist/login.html', { 'form': authform })
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = forms.UserCreateForm(data=request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+            authuser = authenticate(username=user.username, password=user.password)
+            return HttpResponseRedirect(reverse('user', args=(user.username,)))
+    else:
+        user_form = forms.UserCreateForm()
+
+    return render(request, 'todolist/signup.html', { 'form': user_form })
+
+def detail(request, username):
+    user = get_object_or_404(User, username=username)
+    return render(request, 'todolist/user_detail.html', { 'object': user })
