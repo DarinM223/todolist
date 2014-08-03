@@ -10,4 +10,3 @@ class TodoListAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(TodoList, TodoListAdmin)
-# admin.site.register(User)

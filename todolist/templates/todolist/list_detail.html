@@ -1,0 +1,28 @@
+{% extends 'todolist/layout.html' %}
+
+{% block body %}
+<div class="jumbotron">
+  <h2>{{ list.name }} </h2>
+  <a href="#" class="btn btn-success" style="float: right">+</a>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Text</th>
+        <th>Date created</th>
+        <th>Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for field in list.todofield_set.all %}
+      <tr>
+        <td>{{ field.text }}</td>
+        <td>{{ field.dateCreated }}</td>
+        <td>{{ field.deadline }}</td>
+        <td><a class="btn btn-info">Edit</a>
+            <a class="btn btn-danger">Remove</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

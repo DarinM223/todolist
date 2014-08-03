@@ -32,6 +32,22 @@
             <input type="text" class="form-control col-lg-8" 
                 placeholder="Search users">
         </form>
+        <ul class="nav navbar-nav navbar-right">
+          {% block manageuser %}
+            {% if user.is_authenticated %}
+            <li>
+              <a class="dropdown-toggle" id="loggedin" href="#" data-toggle="dropdown">
+                Logged in as {{ user.username }} <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{% url 'logout' %}">Logout</a>
+                </li>
+              </ul>
+            </li>
+            {% endif %}
+          {% endblock %}
+        </ul>
     </div>
 </div>
 {% endblock %}

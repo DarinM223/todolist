@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^signup/$', views.register, name='signup'),
     url(r'^users/(?P<username>[-_\w]+)/$', views.detail, name='user'),
+    url(r'^users/(?P<username>[-_\w]+)/(?P<pk>[-_\w]+)/$', views.listdetail, name='todolist')
 ]

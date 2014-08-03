@@ -1,17 +1,18 @@
 {% extends 'todolist/layout.html' %}
 
 {% block body %}
-{{ object }}
-{{ object.email }}
-{% for list in object.todolist_set.all %}
-  <p>{{ list.name }}</p>
-  {% for listField in list.todofield_set.all %}
-  <div>
-    <p>List text: {{ listField.text }}</p>
-    <p>Date created: {{ listField.dateCreated }}</p>
-    <p>Deadline: {{ listField.deadline }}</p>
-    </br>
-  </div>
-  {% endfor %}
-{% endfor %}
+<div class="jumbotron">
+  <h2>{{ user }}'s TODO lists: <a class="btn btn-success" href="#">+</a></h2>
+    {% for list in user.todolist_set.all %}
+    <a href = "{% url 'todolist' username=user.username pk=list.pk %}">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>{{ list.name }}
+            <a href="#" class="btn btn-danger" style="float: right">Remove</a>
+          </p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+</div>
 {% endblock %}

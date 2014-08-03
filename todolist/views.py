@@ -57,4 +57,8 @@ def register(request):
 
 def detail(request, username):
     user = get_object_or_404(User, username=username)
-    return render(request, 'todolist/user_detail.html', { 'object': user })
+    return render(request, 'todolist/user_detail.html', { 'user': user })
+
+def listdetail(request, username, pk):
+    my_list = get_object_or_404(models.TodoList, pk=pk)
+    return render(request, 'todolist/list_detail.html', { 'list': my_list })
