@@ -1,0 +1,34 @@
+{% extends 'todolist/layout.html' %}
+
+{% block body %}
+<div class="jumbotron">
+  <form class="form-horizontal" action="{% url 'todofield_create' username=user.username pk=list.pk %}"
+    method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Please enter the todofield name</legend>
+      <div class="form-group">
+        {{ form.text.errors }}
+        <label for="id_name" class="col-lg-2 control-label">TODO</label>
+        <div class="col-lg-10">
+          {{ form.text }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        {{ form.deadline.errors }}
+        <label for="id_name" class="col-lg-2 control-label">Deadline</label>
+        <div class="col-lg-10">
+          {{ form.deadline }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}

@@ -21,3 +21,8 @@ class TodoListForm(ModelForm):
     class Meta:
         model = models.TodoList
         fields = ['name']
+
+class TodoFieldForm(ModelForm):
+    class Meta:
+        model = models.TodoField
+        fields = ['text', 'deadline']

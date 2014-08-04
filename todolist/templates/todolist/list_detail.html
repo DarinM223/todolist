@@ -4,7 +4,8 @@
 <div class="jumbotron">
   <h2>{{ list.name }} </h2>
   {% if list.user.username == user.username %}
-  <a href="#" class="btn btn-success" style="float: right">+</a>
+  <a href="{% url 'todofield_create' username=user.username pk=list.pk %}" 
+    class="btn btn-success" style="float: right">+</a>
   {% endif %}
   <table class="table table-striped table-hover">
     <thead>
@@ -21,8 +22,10 @@
         <td>{{ field.dateCreated }}</td>
         <td>{{ field.deadline }}</td>
         {% if list.user.username == user.username %}
-        <td><a class="btn btn-info">Edit</a>
-            <a class="btn btn-danger">Remove</a></td>
+        <td><a href="{% url 'todofield_edit' username=user.username pk=list.pk field_pk=field.pk %}" 
+            class="btn btn-info">Edit</a>
+          <a href="{% url 'todofield_delete' username=user.username pk=list.pk field_pk=field.pk %}" 
+            class="btn btn-danger">Remove</a></td>
         {% endif %}
       </tr>
       {% endfor %}
