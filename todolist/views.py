@@ -48,8 +48,8 @@ def register(request):
 
         if user_form.is_valid():
             user = user_form.save()
-            authuser = authenticate(username=user.username, password=user.password)
-            return HttpResponseRedirect(reverse('user', args=(user.username,)))
+            user.save()
+            return HttpResponseRedirect(reverse('index'))
     else:
         user_form = forms.UserCreateForm()
 
@@ -73,12 +73,12 @@ def createlist(request, username):
             todolist_form = forms.TodoListForm(data=request.POST)
             if todolist_form.is_valid():
                 todolist = todolist_form.save()
-                todolist.user = get_object_or_404(User, username=username)
+                todolist.user = request.user
                 todolist.save()
                 return HttpResponseRedirect(reverse('index'))
         else:
             todolist_form = forms.TodoListForm()
-            return render(request, 'todolist/list_create.html', { 'form': todolist_form })
+        return render(request, 'todolist/list_create.html', { 'form': todolist_form })
     else:
         return HttpResponse('You are not authorized to perform this action!')
 
