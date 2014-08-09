@@ -4,9 +4,10 @@
 {% block header %}
 <title>TODO List</title>
 <link href="{% static 'todolist/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'todolist/css/bootstrap-theme.min.css' %}" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
     type="text/javascript"></script>
-
+{{ form.media }}
 {% endblock %}
 
 {% block nav_bar %}

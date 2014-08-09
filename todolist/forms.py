@@ -4,6 +4,7 @@ from todolist import models
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from bootstrap3_datetime.widgets import DateTimePicker
 
 # extends default User authentication form to allow for email fields
 class UserCreateForm(UserCreationForm):
@@ -26,3 +27,7 @@ class TodoFieldForm(ModelForm):
     class Meta:
         model = models.TodoField
         fields = ['text', 'deadline']
+        widgets = {
+                'deadline': DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
+                    "pickseconds": False})
+        }
