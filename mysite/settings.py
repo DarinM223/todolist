@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'bootstrap3_datetime',
+    'widget_tweaks',
     'todolist'
 )
 

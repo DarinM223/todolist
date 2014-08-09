@@ -1,4 +1,5 @@
 {% extends 'todolist/layout.html' %}
+{% load widget_tweaks %}
 
 {% block body %}
 <div class="jumbotron">
@@ -7,36 +8,56 @@
     <fieldset>
       <legend>Please fill out the following fields to sign up:</legend>
       <div class="form-group">
-        {{ form.username.errors }}
+        {% for error in form.username.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
         <label for="id_username" 
             class="col-lg-2 control-label">Username</label>
         <div class="col-lg-10">
-          {{ form.username }}
+          {{ form.username|add_class:"form-control" }}
         </div>
       </div>
       <div class="form-group">
-        {{ form.email.errors }}
+        {% for error in form.email.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
         <label for="id_email" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-10">
-          {{ form.email }}
+          {{ form.email|add_class:"form-control" }}
         </div>
       </div>
       <div class="form-group">
-        {{ form.password1.errors }}
+        {% for error in form.password1.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
         <label for="id_password1" 
             class="col-lg-2 control-label">Password</label>
         
         <div class="col-lg-10">
-          {{ form.password1 }}
+          {{ form.password1|add_class:"form-control" }}
         </div>
       </div>
       <div class="form-group">
-        {{ form.password2.errors }}
+        {% for error in form.password2.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
         <label for="id_password2" 
             class="col-lg-2 control-label">Reenter password</label>
         
         <div class="col-lg-10">
-          {{ form.password2 }}
+          {{ form.password2|add_class:"form-control" }}
         </div>
       </div>
       <div class="form-group">

@@ -1,4 +1,5 @@
 {% extends 'todolist/layout.html' %}
+{% load widget_tweaks %}
 
 {% block body %}
 <div class="jumbotron">
@@ -7,23 +8,37 @@
     <fieldset>
       <legend>Enter your username and password: </legend>
       <!--Login errors show up in here:-->
-      <ul>
-        {{ form.non_field_errors.as_ul }}
-      </ul>
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-dismissable alert-danger">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          {{error}}
+        </div>
+      {% endfor %}
       <div class="form-group">
+        {% for error in form.username.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
         <label for="id_username" 
             class="col-lg-2 control-label">Username</label>
         <div class="col-lg-10">
-          {{ form.username }}
+          {{ form.username|add_class:"form-control" }}
         </div>
       </div>
       <div class="form-group">
-        {{ form.password.errors }}
+        {% for error in form.password.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
         <label for="id_password" 
             class="col-lg-2 control-label">Password</label>
         
         <div class="col-lg-10">
-          {{ form.password }}
+          {{ form.password|add_class:"form-control" }}
         </div>
       </div>
       <div class="form-group">

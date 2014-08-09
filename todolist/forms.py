@@ -14,8 +14,10 @@ class UserCreateForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2")
         # define widgets as necessary so it can be styled
         widgets = {
-            'password1': forms.PasswordInput(),
-            'password2': forms.PasswordInput()
+                'username': forms.TextInput(),
+                'email': forms.TextInput(),
+                'password1': forms.PasswordInput(),
+                'password2': forms.PasswordInput()
         }
 
 class TodoListForm(ModelForm):
