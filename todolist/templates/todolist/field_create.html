@@ -3,7 +3,7 @@
 
 {% block body %}
 <div class="jumbotron">
-  <form class="form-horizontal" action="{% url 'todofield_create' username=user.username pk=list.pk %}"
+  <form class="form-horizontal" action="{% url 'todolist:field_create' username=user.username pk=list.pk %}"
     method="post">
     {% csrf_token %}
     <fieldset>

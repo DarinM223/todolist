@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'south',
     'bootstrap3_datetime',
     'widget_tweaks',
+    'main_app',
+    'users',
     'todolist'
 )
 

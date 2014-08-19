@@ -3,7 +3,7 @@
 
 {% block body %}
 <div class="jumbotron">
-  <form class="form-horizontal" action="{% url 'login' %}" method="post">
+  <form class="form-horizontal" action="{% url 'users:login' %}" method="post">
     {% csrf_token %}
     <fieldset>
       <legend>Enter your username and password: </legend>
