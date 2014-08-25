@@ -18,7 +18,7 @@ def detail(request, username, pk):
     if not request.user.is_authenticated():
         return HttpResponse('You are not logged in!')
     my_list = get_object_or_404(models.TodoList, pk=pk)
-    return render(request, 'todolist/list_detail.html', { 'list': my_list })
+    return render(request, 'todolist/detail.html', { 'list': my_list })
 
 def create(request, username):
     if request.user.is_authenticated() and request.user.username == username:
@@ -31,7 +31,7 @@ def create(request, username):
                 return HttpResponseRedirect(reverse('main_app:index'))
         else:
             todolist_form = forms.TodoListForm()
-        return render(request, 'todolist/list_create.html', { 'form': todolist_form })
+        return render(request, 'todolist/create.html', { 'form': todolist_form })
     else:
         return HttpResponse('You are not authorized to perform this action!')
 
@@ -53,6 +53,6 @@ def edit(request, username, pk):
                 return HttpResponseRedirect(reverse('main_app:index'))
         else:
             todolist_form = forms.TodoListForm(instance=todolist)
-        return render(request, 'todolist/list_edit.html', { 'form': todolist_form, 'list': todolist})
+        return render(request, 'todolist/edit.html', { 'form': todolist_form, 'list': todolist})
     else:
         return HttpResponse('You are not authorized to perform this action!')

@@ -47,4 +47,4 @@ def detail(request, username):
     if not request.user.is_authenticated():
         return HttpResponse('You are not logged in!')
     user = get_object_or_404(User, username=username)
-    return render(request, 'users/user_detail.html', { 'this_user': user })
+    return render(request, 'users/detail.html', { 'this_user': user })

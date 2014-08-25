@@ -25,7 +25,7 @@ def create(request, username, pk):
                     return HttpResponseRedirect(reverse('todolist:todolist', args=(request.user.username, pk,)))
         else:
             todofield_form = forms.TodoFieldForm()
-        return render(request, 'todofield/field_create.html', { 'form': todofield_form, 'list': todolist })
+        return render(request, 'todofield/create.html', { 'form': todofield_form, 'list': todolist })
     else:
         return HttpResponse('You are not authorized to perform this action!')
 
@@ -47,6 +47,6 @@ def edit(request, username, pk, field_pk):
                 return HttpResponseRedirect(reverse('todolist:todolist', args=(username, pk,)))
         else:
             todofield_form = forms.TodoFieldForm(instance=todofield)
-        return render(request, 'todofield/field_edit.html', { 'form': todofield_form, 'field': todofield })
+        return render(request, 'todofield/edit.html', { 'form': todofield_form, 'field': todofield })
     else:
         return HttpResponse('You are not authorized to perform this action!')
