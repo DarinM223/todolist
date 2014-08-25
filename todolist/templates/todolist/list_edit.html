@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+<div class="jumbotron">
+  <form class="form-horizontal" action="{% url 'todolist:edit' username=user.username pk=list.pk %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Please enter the name of the todolist:</legend>
+      <div class="form-group">
+        {% for error in form.name.errors %}
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{error}}
+          </div>
+        {% endfor %}
+        <label for="id_name" class="col-lg-2 control-label">TODO list name</label>
+        <div class="col-lg-10">
+          {{ form.name|add_class:"form-control" }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}

@@ -16,6 +16,8 @@
           {% if this_user.username == user.username %}
           <a href="{% url 'todolist:delete' username=this_user.username pk=list.pk %}" 
               class="btn btn-danger" style="float: right">Remove</a>
+          <a href="{% url 'todolist:edit' username=this_user.username pk=list.pk %}"
+              class="btn btn-info" style="float:right">Edit</a>
           {% endif %}
         </p>
       </div>

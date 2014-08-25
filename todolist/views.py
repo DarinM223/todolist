@@ -42,3 +42,17 @@ def delete(request, username, pk):
         return HttpResponseRedirect(reverse('main_app:index'))
     else:
         return HttpResponse('You are not authorized to perform this action!')
+
+def edit(request, username, pk):
+    if request.user.is_authenticated() and request.user.username == username:
+        todolist = get_object_or_404(models.TodoList, pk=pk)
+        if request.method == 'POST':
+            todolist_form = forms.TodoListForm(data=request.POST, instance=todolist)
+            if todolist_form.is_valid():
+                todolist_form.save()
+                return HttpResponseRedirect(reverse('main_app:index'))
+        else:
+            todolist_form = forms.TodoListForm(instance=todolist)
+        return render(request, 'todolist/list_edit.html', { 'form': todolist_form, 'list': todolist})
+    else:
+        return HttpResponse('You are not authorized to perform this action!')
