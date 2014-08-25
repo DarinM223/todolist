@@ -12,4 +12,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^users/(?P<username>[-_\w]+)/', 
         include('todolist.urls', namespace='todolist')),
+    url(r'^users/(?P<username>[-_\w]+)/(?P<pk>[-_\w]+)/',
+        include('todofield.urls', namespace='todofield')),
 )

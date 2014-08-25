@@ -1,8 +1,6 @@
 from django.contrib import admin
-from todolist.models import TodoList, TodoField
-
-class TodoFieldInline(admin.TabularInline):
-    model = TodoField
+from todolist.models import TodoList
+from todofield.admin import TodoFieldInline
 
 class TodoListAdmin(admin.ModelAdmin):
     model = TodoList

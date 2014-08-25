@@ -1,9 +1,9 @@
-{% extends 'todolist/layout.html' %}
+{% extends 'layout.html' %}
 {% load widget_tweaks %}
 
 {% block body %}
 <div class="jumbotron">
-  <form class="form-horizontal" action="{% url 'todolist:field_create' username=user.username pk=list.pk %}"
+  <form class="form-horizontal" action="{% url 'todofield:field_edit' username=user.username pk=field.parentList.pk field_pk=field.pk %}"
     method="post">
     {% csrf_token %}
     <fieldset>

@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'main_app',
     'users',
-    'todolist'
+    'todolist',
+    'todofield'
 )
 
 MIDDLEWARE_CLASSES = (

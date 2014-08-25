@@ -1,10 +1,10 @@
-{% extends 'todolist/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block body %}
 <div class="jumbotron">
   <h2>{{ list.name }} </h2>
   {% if list.user.username == user.username %}
-  <a href="{% url 'todolist:field_create' username=user.username pk=list.pk %}" 
+  <a href="{% url 'todofield:field_create' username=user.username pk=list.pk %}" 
     class="btn btn-success" style="float: right">+</a>
   {% endif %}
   <table class="table table-striped table-hover">
@@ -22,9 +22,9 @@
         <td>{{ field.dateCreated }}</td>
         <td>{{ field.deadline }}</td>
         {% if list.user.username == user.username %}
-        <td><a href="{% url 'todolist:field_edit' username=user.username pk=list.pk field_pk=field.pk %}" 
+        <td><a href="{% url 'todofield:field_edit' username=user.username pk=list.pk field_pk=field.pk %}" 
             class="btn btn-info">Edit</a>
-          <a href="{% url 'todolist:field_delete' username=user.username pk=list.pk field_pk=field.pk %}" 
+          <a href="{% url 'todofield:field_delete' username=user.username pk=list.pk field_pk=field.pk %}" 
             class="btn btn-danger">Remove</a></td>
         {% endif %}
       </tr>
