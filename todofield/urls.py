@@ -3,10 +3,10 @@ from django.conf.urls import url
 from todofield import views
 
 urlpatterns = [
-    url(r'new/$', views.field_create, 
-        name='field_create'),
+    url(r'new/$', views.create, 
+        name='create'),
     url(r'^(?P<field_pk>[-_\w]+)/delete/$', 
-        views.field_delete, name='field_delete'),
+        views.delete, name='delete'),
     url(r'^(?P<field_pk>[-_\w]+)/edit/$', 
-        views.field_edit, name='field_edit'),
+        views.edit, name='edit'),
 ]

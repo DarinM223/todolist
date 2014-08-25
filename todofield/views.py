@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
-def field_create(request, username, pk):
+def create(request, username, pk):
     if request.user.is_authenticated() and request.user.username == username:
         todolist = get_object_or_404(models.TodoList, pk=pk)
         if request.method == 'POST':
@@ -29,7 +29,7 @@ def field_create(request, username, pk):
     else:
         return HttpResponse('You are not authorized to perform this action!')
 
-def field_delete(request, username, pk, field_pk):
+def delete(request, username, pk, field_pk):
     if request.user.is_authenticated() and request.user.username == username:
         todofield = get_object_or_404(models.TodoField, pk=field_pk)
         todofield.delete()
@@ -37,7 +37,7 @@ def field_delete(request, username, pk, field_pk):
     else:
         return HttpResponse('You are not authorized to perform this action!')
 
-def field_edit(request, username, pk, field_pk):
+def edit(request, username, pk, field_pk):
     if request.user.is_authenticated() and request.user.username == username:
         todofield = get_object_or_404(models.TodoField, pk=field_pk)
         if request.method == 'POST':

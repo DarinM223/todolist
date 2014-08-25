@@ -5,7 +5,7 @@
   <h2>{{ this_user }}'s TODO lists: 
     {% if this_user.username == user.username %}
     <a class="btn btn-success" 
-        href="{% url 'todolist:list_create' user.username %}">+</a>
+        href="{% url 'todolist:create' user.username %}">+</a>
     {% endif %}
   </h2>
   {% for list in this_user.todolist_set.all %}
@@ -14,7 +14,7 @@
       <div class="panel-body">
         <p>{{ list.name }}
           {% if this_user.username == user.username %}
-          <a href="{% url 'todolist:list_delete' username=this_user.username pk=list.pk %}" 
+          <a href="{% url 'todolist:delete' username=this_user.username pk=list.pk %}" 
               class="btn btn-danger" style="float: right">Remove</a>
           {% endif %}
         </p>
